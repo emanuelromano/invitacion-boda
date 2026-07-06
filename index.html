@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leonela & Emanuel | Invitación de boda</title>
+    <meta name="description" content="Invitación de boda de Leonela y Emanuel - 9 de enero de 2027">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="hero" id="inicio">
+        <nav class="nav" aria-label="Navegación principal">
+            <a href="#inicio" class="brand">L & E</a>
+            <div class="nav-links">
+                <a href="#historia">Historia</a>
+                <a href="#evento">Evento</a>
+                <a href="#itinerario">Itinerario</a>
+                <a href="#recomendaciones">Recomendaciones</a>
+                <a href="#rsvp">Asistencia</a>
+            </div>
+        </nav>
+
+        <section class="hero-content" aria-labelledby="hero-title">
+            <p class="eyebrow">¡Nos casamos!</p>
+            <h1 id="hero-title">Leonela & Emanuel</h1>
+            <div class="hero-actions">
+            </div>
+        </section>
+    </header>
+
+    <main>
+        <section class="music-section" aria-labelledby="song-title">
+            <div class="music-player">
+                <div class="music-details">
+                    <p class="music-eyebrow">Nuestra canción</p>
+                    <h2 id="song-title">Sabes</h2>
+                    <p class="music-artist">Reik</p>
+                </div>
+
+                <div class="music-controls" aria-label="Controles de reproducción">
+                    <button class="track-control" type="button" aria-label="Pista anterior" title="Pista anterior" disabled>
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="5" y="5" width="3" height="14" rx="1" />
+                            <path d="M19 5.5v13L9 12l10-6.5Z" />
+                        </svg>
+                    </button>
+                    <button class="play-control" id="play-control" type="button" aria-label="Reproducir Sabes de Reik" aria-pressed="false">
+                        <svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M8 5.5v13l10-6.5L8 5.5Z" />
+                        </svg>
+                        <svg class="pause-icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M7 5h4v14H7zM13 5h4v14h-4z" />
+                        </svg>
+                    </button>
+                    <button class="track-control" type="button" aria-label="Pista siguiente" title="Pista siguiente" disabled>
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M5 5.5v13L15 12 5 5.5Z" />
+                            <rect x="16" y="5" width="3" height="14" rx="1" />
+                        </svg>
+                    </button>
+                </div>
+
+                <audio id="wedding-song" src="assets/cancion.mp3" preload="metadata"></audio>
+            </div>
+        </section>
+
+        <section class="countdown-section" aria-labelledby="countdown-title">
+            <div class="section-heading">
+                <p class="eyebrow">Cuenta regresiva</p>
+                <h2 id="countdown-title">¡Falta muy poco para celebrar juntos!</h2>
+            </div>
+            <div class="countdown" aria-live="polite">
+                <div class="time-box">
+                    <span id="days">000</span>
+                    <small>Días</small>
+                </div>
+                <div class="time-box">
+                    <span id="hours">00</span>
+                    <small>Horas</small>
+                </div>
+                <div class="time-box">
+                    <span id="minutes">00</span>
+                    <small>Minutos</small>
+                </div>
+                <div class="time-box">
+                    <span id="seconds">00</span>
+                    <small>Segundos</small>
+                </div>
+            </div>
+        </section>
+
+        <section class="story section-grid" id="historia">
+            <div class="section-heading">
+                <p class="eyebrow">Nuestra historia</p>
+                <h2>Un sí para toda la vida</h2>
+            </div>
+            <div class="story-copy">
+                <p>
+                    Nuestra historia está hecha de pequeños momentos que, con el tiempo, se convirtieron en una vida compartida. Hoy queremos celebrar el amor, la amistad y los sueños que nos trajeron hasta aquí, junto a quienes más queremos.                </p>
+                <p>
+                    En este espacio encontrarán toda la información de nuestro gran día. También podrán confirmar su asistencia y, más adelante, revivir junto a nosotros cada sonrisa, abrazo y emoción a través de las fotos de esta noche tan especial.                </p>
+            </div>
+        </section>
+
+        <section class="gallery-section" aria-labelledby="gallery-title">
+            <div class="section-heading">
+                <p class="eyebrow">Momentos</p>
+                <h2 id="gallery-title">Galería</h2>
+            </div>
+            <div class="carousel" aria-label="Galeria de fotos">
+                <button class="carousel-control prev" type="button" aria-label="Foto anterior">‹</button>
+                <div class="carousel-track">
+                    <article class="photo-slide is-active" style="--photo: url('assets/galeria1.jpeg')">
+                        <span>Leonela & Emanuel</span>
+                    </article>
+                    <article class="photo-slide" style="--photo: url('assets/galeria2.jpeg')">
+                        <span>Una nueva etapa</span>
+                    </article>
+                    <article class="photo-slide" style="--photo: url('assets/galeria3.jpeg')">
+                        <span>Nos casamos</span>
+                    </article>
+                </div>
+                <button class="carousel-control next" type="button" aria-label="Foto siguiente">›</button>
+            </div>
+            <div class="carousel-dots" aria-label="Seleccionar foto"></div>
+        </section>
+
+        <section class="event-section section-grid" id="evento">
+            <div class="section-heading">
+                <p class="eyebrow">El gran dia...</p>
+                <h2>Sábado 9 de enero de 2027</h2>
+            </div>
+            <div class="event-details">
+                <article>
+                    <span class="detail-label">Hora de inicio</span>
+                    <strong>19 hs</strong>
+                    <p>Te esperamos a esta hora para compartir el inicio de la ceremonia y la celebración.</p>
+                </article>
+                <article>
+                    <span class="detail-label">Lugar</span>
+                    <strong>Hostería El Lapacho</strong>
+                    <p>Km 24 Ruta 311, T4124 San Pedro de Colalao, Tucumán.</p>
+                    <a href="https://maps.app.goo.gl/mftXDEJQfja2usXE7" target="_blank" rel="noreferrer">Abrir mapa</a>
+                </article>
+                <article>
+                    <span class="detail-label">Código de vestimenta</span>
+                    <strong>Elegante</strong>
+                    <p>Imaginamos una noche elegante, cálida y romántica. Los invitamos a acompañarnos con una vestimenta formal que refleje el espíritu de esta celebración.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="schedule-section" id="itinerario" aria-labelledby="schedule-title">
+            <div class="section-heading">
+                <p class="eyebrow">Nuestro itinerario</p>
+                <h2 id="schedule-title">Los momentos principales</h2>
+                <p class="schedule-intro">Te compartimos los horarios importantes para que podamos comenzar juntos y sin apuros.</p>
+            </div>
+            <ol class="timeline">
+                <li>
+                    <time datetime="2027-01-09T19:00:00-03:00">19:00</time>
+                    <div class="timeline-card">
+                        <h3>Conferencia de bodas</h3>
+                    </div>
+                </li>
+                <li>
+                    <time datetime="2027-01-09T20:30:00-03:00">20:30</time>
+                    <div class="timeline-card">
+                        <h3>Comienzo de la recepción</h3>
+                    </div>
+                </li>
+            </ol>
+        </section>
+
+        <section class="recommendations-section" id="recomendaciones" aria-labelledby="recommendations-title">
+            <div class="section-heading">
+                <p class="eyebrow">Para tener en cuenta</p>
+                <h2 id="recommendations-title">Recomendaciones</h2>
+            </div>
+            <div class="recommendations-grid">
+                <article class="recommendation-card">
+                    <span class="recommendation-number" aria-hidden="true">01</span>
+                    <h3>Código de vestimenta</h3>
+                    <p>Elegante. Para acompañar la estética de la celebración, les pedimos evitar estos colores:</p>
+                    <ul class="avoid-colors" aria-label="Colores a evitar">
+                        <li><span class="color-swatch white"></span>Blanco</li>
+                        <li><span class="color-swatch red"></span>Rojo</li>
+                        <li><span class="color-swatch lilac"></span>Lila</li>
+                    </ul>
+                </article>
+                <article class="recommendation-card">
+                    <span class="recommendation-number" aria-hidden="true">02</span>
+                    <h3>Celulares en silencio</h3>
+                    <p>Durante la ceremonia, te pedimos mantener el teléfono en silencio para acompañar este momento tan especial.</p>
+                </article>
+                <article class="recommendation-card">
+                    <span class="recommendation-number" aria-hidden="true">03</span>
+                    <h3>Puntualidad</h3>
+                    <p>Nos encantará comenzar a horario. Te recomendamos llegar antes de las 19:00.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="rsvp-section" id="rsvp" aria-labelledby="rsvp-title">
+            <div class="rsvp-content">
+                <p class="eyebrow">Confirmación</p>
+                <h2 id="rsvp-title">¡Nos encantaría contar con vos!</h2>
+                <p class="rsvp-lead">Para ayudarnos a organizar este día tan especial, te compartimos la información para confirmar tu lugar.</p>
+
+                <div class="rsvp-summary">
+                    <div class="rsvp-pricing" aria-label="Valores de las tarjetas">
+                        <div>
+                            <span>Tarjeta por persona</span>
+                            <strong>$70.000</strong>
+                        </div>
+                        <div>
+                            <span>Niños hasta 8 años</span>
+                            <strong>$35.000</strong>
+                        </div>
+                    </div>
+                    <div class="rsvp-deadline">
+                        <span>Confirmar hasta el</span>
+                        <strong>7 de agosto</strong>
+                        <p>Te agradecemos mucho que nos confirmes antes de esta fecha.</p>
+                    </div>
+                </div>
+
+                <div class="rsvp-steps">
+                    <p><strong>Compromiso de asistencia.</strong> Para reservar tu lugar, será necesario abonar una seña correspondiente a una parte del valor de la tarjeta. Luego, podrán completar el importe restante realizando pagos parciales, en el momento y con el monto que prefieran.</p>
+                    <p><strong>Después de confirmar.</strong> Nuestra planificadora de bodas se pondrá en contacto por WhatsApp para brindarte los datos de pago de la seña.</p>
+                </div>
+
+                <button class="button primary rsvp-open" id="open-rsvp" type="button">Confirmar</button>
+
+                <div class="planner-contact">
+                    <p>Ante cualquier duda o consulta, podés contactar a nuestra planificadora de bodas, <strong>Rocío Adaro</strong>.</p>
+                    <a class="button secondary" href="https://wa.me/543814481130?text=Hola%20Roc%C3%ADo.%20Tengo%20una%20consulta%20sobre%20el%20casamiento%20de%20Leonela%20y%20Emanuel." target="_blank" rel="noreferrer">Contactar</a>
+                </div>
+            </div>
+
+            <dialog class="rsvp-modal" id="rsvp-modal" aria-labelledby="rsvp-modal-title">
+                <div class="rsvp-modal-card">
+                    <button class="rsvp-modal-close" id="close-rsvp" type="button" aria-label="Cerrar confirmación">×</button>
+                    <p class="modal-eyebrow">Confirmar asistencia</p>
+                    <h2 id="rsvp-modal-title">¿Quiénes nos acompañan?</h2>
+                    <p class="modal-intro">Completá los datos para preparar tu mensaje de confirmación.</p>
+
+                    <form class="rsvp-form" id="rsvp-form">
+                        <label for="guest-name">Nombre o familia</label>
+                        <input id="guest-name" name="guestName" type="text" autocomplete="name" placeholder="Ej. Familia Romano" required>
+
+                        <label for="guest-count">Cantidad de asistentes</label>
+                        <input id="guest-count" name="guestCount" type="number" inputmode="numeric" min="1" step="1" placeholder="Ej. 4" required>
+
+                        <p class="required-note">Todos los campos son obligatorios.</p>
+                        <button class="button primary" type="submit">Enviar confirmación por WhatsApp</button>
+                    </form>
+                </div>
+            </dialog>
+        </section>
+
+        <section class="info-section" aria-labelledby="lodging-title">
+            <article class="lodging-card">
+                <div class="lodging-heading">
+                    <p class="eyebrow">Información sobre hospedaje</p>
+                    <h2 id="lodging-title">¡Quedate a celebrar con nosotros!</h2>
+                </div>
+                <div class="lodging-content">
+                    <p>Como la boda se realizará en la Hostería El Lapacho, quienes lo deseen podrán alojarse allí y disfrutar de una tarifa especial acordada para nuestros invitados.</p>
+                    <p>Para consultar disponibilidad y reservar una habitación, comunicate directamente con el hotel al <a class="phone-link" href="tel:+5493812370022">+54 9 381 237-0022</a>.</p>
+                    <p class="lodging-note">Al contactarte, mencioná que querés reservar una habitación para el casamiento de Leonela y Emanuel.</p>
+                    <div class="lodging-actions">
+                        <a class="button primary" href="https://wa.me/5493812370022?text=Hola%2C%20quisiera%20consultar%20por%20una%20habitaci%C3%B3n%20para%20el%20casamiento%20de%20Leonela%20y%20Emanuel." target="_blank" rel="noreferrer">Consultar por WhatsApp</a>
+                        <a class="button secondary" href="tel:+5493812370022">Llamar al hotel</a>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>Leonela & Emanuel · 09.01.2027</p>
+    </footer>
+
+    <script src="script.js?v=20260622"></script>
+</body>
+</html>
