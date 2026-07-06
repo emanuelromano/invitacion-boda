@@ -351,6 +351,8 @@ main > section {
     aspect-ratio: 4 / 3;
     position: relative;
     overflow: hidden;
+    touch-action: pan-y;
+    user-select: none;
     background: var(--ivory);
     border: 1px solid var(--line);
 }
@@ -610,12 +612,36 @@ main > section {
     max-width: none;
     margin-top: 32px;
     padding: 104px 20px;
-    background: linear-gradient(rgba(248, 244, 238, 0.90), rgba(248, 244, 238, 0.70)), url("assets/fondo.jpeg") center / cover fixed;
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(rgba(248, 244, 238, 0.90), rgba(248, 244, 238, 0.70)), url("assets/fondo.jpeg") center / cover;
+}
+
+.rsvp-fixed-ready .rsvp-section {
+    background: transparent;
+}
+
+.rsvp-fixed-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    clip-path: inset(0 0 100% 0);
+    background: linear-gradient(rgba(248, 244, 238, 0.90), rgba(248, 244, 238, 0.70)), url("assets/fondo.jpeg") center / cover;
+    transition: opacity 180ms ease;
+    will-change: opacity, clip-path;
+}
+
+.rsvp-fixed-bg.is-visible {
+    opacity: 1;
 }
 
 .rsvp-content {
     width: min(900px, 100%);
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
     text-align: center;
 }
 

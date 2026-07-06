@@ -34,6 +34,50 @@ const closeRsvpButton = document.getElementById("close-rsvp");
 const rsvpForm = document.getElementById("rsvp-form");
 const guestNameInput = document.getElementById("guest-name");
 const guestCountInput = document.getElementById("guest-count");
+const rsvpSection = document.getElementById("rsvp");
+const rsvpFixedBg = document.querySelector(".rsvp-fixed-bg");
+
+let isRsvpBgVisible = false;
+let rsvpBgFrame = null;
+
+document.documentElement.classList.add("rsvp-fixed-ready");
+
+function updateRsvpBgClip() {
+    rsvpBgFrame = null;
+
+    if (!isRsvpBgVisible) {
+        return;
+    }
+
+    const rect = rsvpSection.getBoundingClientRect();
+    const top = Math.max(rect.top, 0);
+    const bottom = Math.max(window.innerHeight - rect.bottom, 0);
+
+    rsvpFixedBg.style.clipPath = `inset(${top}px 0 ${bottom}px 0)`;
+}
+
+function requestRsvpBgUpdate() {
+    if (rsvpBgFrame === null) {
+        rsvpBgFrame = requestAnimationFrame(updateRsvpBgClip);
+    }
+}
+
+const rsvpBackgroundObserver = new IntersectionObserver(([entry]) => {
+    isRsvpBgVisible = entry.isIntersecting;
+    rsvpFixedBg.classList.toggle("is-visible", isRsvpBgVisible);
+
+    if (isRsvpBgVisible) {
+        requestRsvpBgUpdate();
+    } else {
+        rsvpFixedBg.style.clipPath = "inset(0 0 100% 0)";
+    }
+}, {
+    threshold: 0,
+});
+
+rsvpBackgroundObserver.observe(rsvpSection);
+window.addEventListener("scroll", requestRsvpBgUpdate, { passive: true });
+window.addEventListener("resize", requestRsvpBgUpdate);
 
 openRsvpButton.addEventListener("click", () => {
     rsvpModal.showModal();
@@ -97,10 +141,18 @@ updateCountdown();
 setInterval(updateCountdown, 1000);
 
 const slides = [...document.querySelectorAll(".photo-slide")];
+const carouselTrack = document.querySelector(".carousel-track");
 const previousButton = document.querySelector(".carousel-control.prev");
 const nextButton = document.querySelector(".carousel-control.next");
 const dotsContainer = document.querySelector(".carousel-dots");
 let activeSlide = 0;
+let swipeStartX = 0;
+let swipeStartY = 0;
+let swipeCurrentX = 0;
+let swipeStartTime = 0;
+let swipePointerId = null;
+let isHorizontalSwipe = false;
+let isSwipeDirectionKnown = false;
 
 function showSlide(index) {
     activeSlide = (index + slides.length) % slides.length;
@@ -125,4 +177,64 @@ slides.forEach((_, index) => {
 
 previousButton.addEventListener("click", () => showSlide(activeSlide - 1));
 nextButton.addEventListener("click", () => showSlide(activeSlide + 1));
+
+carouselTrack.addEventListener("pointerdown", (event) => {
+    if (event.pointerType === "mouse" && event.button !== 0) {
+        return;
+    }
+
+    swipePointerId = event.pointerId;
+    swipeStartX = event.clientX;
+    swipeStartY = event.clientY;
+    swipeCurrentX = event.clientX;
+    swipeStartTime = event.timeStamp;
+    isHorizontalSwipe = false;
+    isSwipeDirectionKnown = false;
+    carouselTrack.setPointerCapture(swipePointerId);
+});
+
+carouselTrack.addEventListener("pointermove", (event) => {
+    if (event.pointerId !== swipePointerId) {
+        return;
+    }
+
+    const deltaX = event.clientX - swipeStartX;
+    const deltaY = event.clientY - swipeStartY;
+    const absX = Math.abs(deltaX);
+    const absY = Math.abs(deltaY);
+
+    swipeCurrentX = event.clientX;
+
+    if (!isSwipeDirectionKnown && (absX > 8 || absY > 8)) {
+        isHorizontalSwipe = absX > absY * 1.2;
+        isSwipeDirectionKnown = true;
+    }
+});
+
+function finishCarouselSwipe(event) {
+    if (event.pointerId !== swipePointerId) {
+        return;
+    }
+
+    const deltaX = swipeCurrentX - swipeStartX;
+    const elapsed = Math.max(event.timeStamp - swipeStartTime, 1);
+    const velocity = Math.abs(deltaX) / elapsed;
+    const distanceThreshold = Math.min(80, Math.max(44, carouselTrack.offsetWidth * 0.16));
+    const isIntentionalSwipe = isHorizontalSwipe && (
+        Math.abs(deltaX) >= distanceThreshold || (velocity > 0.45 && Math.abs(deltaX) > 24)
+    );
+
+    if (isIntentionalSwipe) {
+        showSlide(deltaX < 0 ? activeSlide + 1 : activeSlide - 1);
+    }
+
+    if (swipePointerId !== null && carouselTrack.hasPointerCapture(swipePointerId)) {
+        carouselTrack.releasePointerCapture(swipePointerId);
+    }
+
+    swipePointerId = null;
+}
+
+carouselTrack.addEventListener("pointerup", finishCarouselSwipe);
+carouselTrack.addEventListener("pointercancel", finishCarouselSwipe);
 showSlide(0);
