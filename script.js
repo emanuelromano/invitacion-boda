@@ -131,7 +131,7 @@ function updateCountdown() {
     const minutes = Math.floor((distance % hour) / minute);
     const seconds = Math.floor((distance % minute) / 1000);
 
-    countdownNodes.days.textContent = pad(days, 3);
+    countdownNodes.days.textContent = String(days);
     countdownNodes.hours.textContent = pad(hours);
     countdownNodes.minutes.textContent = pad(minutes);
     countdownNodes.seconds.textContent = pad(seconds);
